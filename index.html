@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Madhukar Lakshman | P.Eng · Mechanical Engineer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:    #1F5C8B;
+      --blue-dk: #163f63;
+      --blue-lt: #e8f1f8;
+      --teal:    #1a8a8a;
+      --gray:    #555;
+      --light:   #f5f7fa;
+      --white:   #ffffff;
+      --text:    #222;
+      --border:  #dde3ea;
+      --gold:    #c9a227;
+      --radius:  10px;
+      --shadow:  0 4px 24px rgba(31,92,139,0.10);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.65; }
+    a { color: var(--blue); text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 60px;
+    }
+    .nav-brand { font-weight: 700; font-size: 1rem; color: var(--blue); }
+    .nav-peng { background: var(--gold); color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; margin-left: 8px; letter-spacing: 0.5px; }
+    .nav-links { display: flex; gap: 22px; list-style: none; }
+    .nav-links a { font-size: 0.86rem; font-weight: 500; color: var(--gray); transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* SECTIONS */
+    section { padding: 80px 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag { display: inline-block; background: var(--blue-lt); color: var(--blue); font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    h2.section-title { font-size: 2rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 8px; }
+    .section-sub { color: var(--gray); font-size: 1rem; margin-bottom: 48px; max-width: 640px; }
+    .divider { width: 48px; height: 4px; background: var(--blue); border-radius: 2px; margin: 16px 0 40px; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; padding-top: 60px;
+      background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 55%, var(--teal) 100%);
+      display: flex; align-items: center;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-text .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; font-size: 0.8rem; font-weight: 600; padding: 5px 14px; margin-bottom: 14px; }
+    .peng-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--gold); color: #fff; border-radius: 6px; font-size: 0.82rem; font-weight: 800; padding: 5px 14px; margin-bottom: 20px; letter-spacing: 0.5px; }
+    .hero-text h1 { font-size: 2.8rem; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 8px; }
+    .hero-text .subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.82); margin-bottom: 20px; }
+    .hero-text p { font-size: 0.97rem; color: rgba(255,255,255,0.72); line-height: 1.7; margin-bottom: 32px; max-width: 500px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 12px 26px; border-radius: var(--radius); font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: all .2s; border: none; }
+    .btn-white { background: #fff; color: var(--blue); }
+    .btn-white:hover { background: var(--blue-lt); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .hero-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .stat-card { background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22); border-radius: var(--radius); padding: 22px 20px; text-align: center; }
+    .stat-card .num { font-size: 2rem; font-weight: 800; color: #fff; }
+    .stat-card.gold-card { background: rgba(201,162,39,0.25); border-color: rgba(201,162,39,0.5); }
+    .stat-card.gold-card .num { color: #ffd966; }
+    .stat-card .label { font-size: 0.76rem; color: rgba(255,255,255,0.72); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.8px; }
+
+    /* ABOUT */
+    #about { background: var(--light); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .about-text p { color: var(--gray); line-height: 1.8; margin-bottom: 16px; }
+    .peng-highlight { background: linear-gradient(135deg, #1a3a5c, #1F5C8B); border-radius: var(--radius); padding: 20px 22px; color: #fff; margin-bottom: 16px; display: flex; gap: 14px; align-items: center; }
+    .peng-highlight .icon { font-size: 2rem; }
+    .peng-highlight strong { display: block; font-size: 1rem; margin-bottom: 4px; }
+    .peng-highlight span { font-size: 0.83rem; color: rgba(255,255,255,0.78); }
+    .about-highlights { display: flex; flex-direction: column; gap: 12px; }
+    .highlight-item { display: flex; align-items: flex-start; gap: 14px; background: var(--white); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); border-left: 4px solid var(--blue); }
+    .highlight-icon { font-size: 1.3rem; margin-top: 2px; }
+    .highlight-item strong { display: block; color: var(--blue-dk); font-size: 0.9rem; margin-bottom: 2px; }
+    .highlight-item span { font-size: 0.82rem; color: var(--gray); }
+
+    /* EXPERTISE */
+    #expertise { background: var(--white); }
+    .expertise-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; }
+    .expertise-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 24px; box-shadow: var(--shadow); transition: transform .2s; border-top: 4px solid var(--blue); }
+    .expertise-card:hover { transform: translateY(-4px); }
+    .expertise-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .expertise-card h3 { font-size: 1.02rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 8px; }
+    .expertise-card p { font-size: 0.86rem; color: var(--gray); line-height: 1.7; margin-bottom: 14px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { background: var(--blue-lt); color: var(--blue); font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: 20px; }
+
+    /* SKILLS */
+    #skills { background: var(--light); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .skill-group h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 14px; }
+    .skill-item { margin-bottom: 13px; }
+    .skill-name { display: flex; justify-content: space-between; font-size: 0.86rem; color: var(--text); margin-bottom: 5px; }
+    .skill-name span { color: var(--gray); font-size: 0.78rem; }
+    .skill-bar { height: 6px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .skill-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--teal)); }
+
+    /* CERTIFICATIONS */
+    #certifications { background: var(--white); }
+    .cert-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .cert-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .2s; }
+    .cert-card:hover { transform: translateY(-3px); }
+    .cert-card.peng-card { border: 2px solid var(--gold); }
+    .cert-img-wrap { position: relative; background: #f8f8f8; border-bottom: 1px solid var(--border); overflow: hidden; cursor: pointer; }
+    .cert-img-wrap img { width: 100%; height: 180px; object-fit: cover; object-position: top; transition: transform .3s; }
+    .cert-img-wrap:hover img { transform: scale(1.03); }
+    .cert-img-wrap .zoom-hint { position: absolute; bottom: 6px; right: 6px; background: rgba(31,92,139,0.85); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+    .cert-body { padding: 14px 16px; }
+    .cert-body h4 { font-size: 0.88rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 4px; line-height: 1.4; }
+    .cert-body p { font-size: 0.76rem; color: var(--gray); margin-bottom: 8px; }
+    .cert-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 10px; border-radius: 20px; }
+    .badge-green { background: #e8f8e8; color: #2a7a2a; }
+    .badge-gold { background: #fff3cd; color: #856404; }
+
+    /* LIGHTBOX */
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; padding:20px; }
+    .lightbox.active { display:flex; }
+    .lightbox img { max-width:90vw; max-height:90vh; border-radius:8px; box-shadow:0 8px 40px rgba(0,0,0,0.5); }
+    .lightbox-close { position:fixed; top:20px; right:28px; color:#fff; font-size:2rem; cursor:pointer; font-weight:700; }
+
+    /* EXPERIENCE */
+    #experience { background: var(--light); }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content:''; position:absolute; left:6px; top:0; bottom:0; width:2px; background:var(--border); }
+    .timeline-item { position:relative; margin-bottom:32px; }
+    .timeline-dot { position:absolute; left:-25px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--blue); border:3px solid var(--white); box-shadow:0 0 0 2px var(--blue); }
+    .timeline-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px; box-shadow:var(--shadow); }
+    .timeline-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px; flex-wrap:wrap; gap:8px; }
+    .timeline-header h3 { font-size:1rem; font-weight:700; color:var(--blue-dk); }
+    .timeline-period { background:var(--blue-lt); color:var(--blue); font-size:0.73rem; font-weight:600; padding:3px 10px; border-radius:20px; }
+    .timeline-company { font-size:0.83rem; color:var(--gray); font-style:italic; margin-bottom:10px; }
+    .timeline-bullets { list-style:none; }
+    .timeline-bullets li { font-size:0.86rem; color:var(--gray); padding:3px 0 3px 16px; position:relative; line-height:1.6; }
+    .timeline-bullets li::before { content:'›'; position:absolute; left:0; color:var(--blue); font-weight:700; }
+
+    /* PROJECTS / MAKER */
+    #projects { background: var(--white); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .project-card { border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .2s; }
+    .project-card:hover { transform:translateY(-4px); }
+    .project-card img { width:100%; height:185px; object-fit:cover; cursor:pointer; transition:transform .3s; }
+    .project-card img:hover { transform:scale(1.04); }
+    .project-body { padding:16px; }
+    .project-body h4 { font-size:0.93rem; font-weight:700; color:var(--blue-dk); margin-bottom:5px; }
+    .project-body p { font-size:0.81rem; color:var(--gray); line-height:1.6; margin-bottom:10px; }
+
+    /* AI */
+    #ai { background: linear-gradient(135deg, var(--blue-dk), var(--blue)); }
+    #ai .section-tag { background:rgba(255,255,255,0.2); color:#fff; }
+    #ai h2.section-title { color:#fff; }
+    #ai .section-sub { color:rgba(255,255,255,0.72); }
+    #ai .divider { background:rgba(255,255,255,0.35); }
+    .ai-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .ai-card { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius); padding:22px; }
+    .ai-card h4 { font-size:0.95rem; font-weight:700; color:#fff; margin-bottom:8px; }
+    .ai-card p { font-size:0.84rem; color:rgba(255,255,255,0.74); line-height:1.7; }
+    .ai-tag { display:inline-block; background:rgba(255,255,255,0.2); color:#fff; font-size:0.71rem; font-weight:600; padding:3px 10px; border-radius:20px; margin:4px 3px 0 0; }
+
+    /* CONTACT */
+    #contact { background:var(--light); }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+    .contact-item { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+    .contact-icon { width:42px; height:42px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+    .contact-item strong { display:block; font-size:0.76rem; color:var(--gray); text-transform:uppercase; letter-spacing:0.8px; }
+    .contact-item span { font-size:0.9rem; color:var(--text); }
+    .contact-cta { background:var(--white); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow); }
+    .contact-cta h3 { font-size:1.1rem; font-weight:700; color:var(--blue-dk); margin-bottom:10px; }
+    .contact-cta p { font-size:0.87rem; color:var(--gray); margin-bottom:20px; line-height:1.7; }
+    .btn-blue { background:var(--blue); color:#fff; display:inline-block; padding:12px 28px; border-radius:var(--radius); font-weight:600; font-size:0.92rem; transition:background .2s; }
+    .btn-blue:hover { background:var(--blue-dk); }
+
+    footer { background:var(--blue-dk); color:rgba(255,255,255,0.6); text-align:center; padding:22px; font-size:0.82rem; }
+    footer span { color:rgba(255,255,255,0.9); font-weight:600; }
+
+    @media(max-width:768px){
+      .hero-inner,.about-grid,.contact-grid { grid-template-columns:1fr; }
+      .expertise-grid,.skills-grid,.cert-grid,.projects-grid,.ai-grid { grid-template-columns:1fr; }
+      .hero-text h1 { font-size:2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex;align-items:center;">
+    <div class="nav-brand">Madhukar Lakshman</div>
+    <span class="nav-peng">P.Eng</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#ai">AI Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="badge">🇨🇦 Canadian Permanent Resident · Waterloo, ON</div>
+      <div class="peng-badge">🏛️ Licensed P.Eng — Professional Engineers Ontario · Licence #100559685</div>
+      <h1>Madhukar Shimoga Lakshman</h1>
+      <div class="subtitle">P.Eng · Product Design Engineer · CAD Specialist · Maker</div>
+      <p>Licensed Professional Engineer with 10+ years of hands-on experience in product design, manufacturing engineering, and PLM-aligned workflows. Triple SolidWorks Certified. 3D printing, laser engraving, and CNC fabrication enthusiast. Passionate about AI-powered engineering tools.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-white">Get In Touch</a>
+        <a href="#certifications" class="btn btn-outline">View Credentials</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card gold-card">
+        <div class="num">P.Eng</div>
+        <div class="label">Licensed · PEO Ontario</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">10+</div>
+        <div class="label">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">3×</div>
+        <div class="label">SolidWorks Certified</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">8</div>
+        <div class="label">Total Certifications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Engineer. Maker.<br>Problem Solver.</h2>
+        <div class="divider"></div>
+        <div class="peng-highlight">
+          <div class="icon">🏛️</div>
+          <div>
+            <strong>Licensed Professional Engineer (P.Eng)</strong>
+            <span>Professional Engineers Ontario · Licence #100559685 · Issued October 2025</span>
+          </div>
+        </div>
+        <p>I am a licensed P.Eng Mechanical Engineer with over a decade of hands-on experience in product design, sheet metal fabrication, HVAC systems, and manufacturing engineering. Based in Waterloo, Ontario, I bring a rare combination of deep CAD expertise, real-world design review leadership, and a maker mindset that extends into 3D printing, laser engraving, and desktop CNC.</p>
+        <p>My career spans product design, estimating, project engineering, and MEP coordination — giving me a 360° view of how a product moves from concept to the shop floor. I understand the pain points in design review cycles, supplier coordination, and engineering knowledge capture — and I am passionate about solving them with better tools and AI-powered processes.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="highlight-icon">🏛️</div>
+          <div><strong>Licensed P.Eng — Professional Engineers Ontario</strong><span>Licence #100559685 · Oct 2025 · Entitled to practise in Ontario</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📐</div>
+          <div><strong>Triple SolidWorks Certified Professional</strong><span>Advanced Sheet Metal · Weldments · Drawing Tools — Dassault Systèmes</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🖨️</div>
+          <div><strong>3D Printing & Laser Engraving</strong><span>Anycubic & Creality FDM · xTool Diode Laser · Desktop CNC · Fusion 360</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🔄</div>
+          <div><strong>PLM & Manufacturing Workflow Expert</strong><span>BOM lifecycle · ECO coordination · ERP-integrated design-to-delivery</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🤖</div>
+          <div><strong>AI-Augmented Engineer</strong><span>Claude AI · ChatGPT · Copilot — applied daily in engineering workflows</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-inner">
+    <div class="section-tag">What I Do</div>
+    <h2 class="section-title">Core Expertise</h2>
+    <div class="divider"></div>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="icon">📐</div>
+        <h3>CAD Design & Product Development</h3>
+        <p>Design and develop complex sheet metal components, assemblies, and mechanical systems using SolidWorks and AutoCAD. Produce detailed fabrication drawings, BOMs, and manufacturing routings from concept through production release.</p>
+        <div class="tag-list">
+          <span class="tag">SolidWorks 2020</span><span class="tag">AutoCAD</span><span class="tag">Fusion 360</span><span class="tag">Revit</span><span class="tag">Sheet Metal</span><span class="tag">Weldments</span>
+        </div>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">🔍</div>
+        <h3>Engineering Design Reviews</h3>
+        <p>Lead end-to-end design review cycles — coordinating between engineering, sales, fabrication, and supplier teams. Identify issues early, manage design feedback loops, validate drawings against specs, and ensure production-ready output.</p>
+        <div class="tag-list">
+          <span class="tag">Design Review</span><span class="tag">DFM</span><span class="tag">Supplier Reviews</span><span class="tag">Cross-functional</span><span class="tag">Drawing Validation</span>
+        </div>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">🔄</div>
+        <h3>PLM & Manufacturing Workflows</h3>
+        <p>Manage product lifecycle documentation including BOM revisions, engineering change coordination, and drawing version control via ERP-integrated manufacturing routings from design to shop floor delivery.</p>
+        <div class="tag-list">
+          <span class="tag">BOM Lifecycle</span><span class="tag">ECO Coordination</span><span class="tag">E2 ERP</span><span class="tag">DAX</span><span class="tag">Revision Control</span>
+        </div>
+      </div>
+      <div class="expertise-card">
+        <div class="icon">🖨️</div>
+        <h3>3D Printing, Laser & CNC</h3>
+        <p>Hands-on experience with FDM 3D printing (Anycubic, Creality), diode laser engraving and cutting (xTool), and desktop CNC. Designs parts in SolidWorks and Fusion 360, generates G-code, optimises print profiles, and produces functional prototypes and custom parts.</p>
+        <div class="tag-list">
+          <span class="tag">FDM 3D Printing</span><span class="tag">Laser Engraving</span><span class="tag">CNC</span><span class="tag">Cura Slicer</span><span class="tag">Lightburn</span><span class="tag">G-code</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">Technical Proficiency</div>
+    <h2 class="section-title">Skills</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>CAD & Design</h4>
+        <div class="skill-item"><div class="skill-name">SolidWorks <span>Advanced Certified</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">AutoCAD <span>Expert</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">Fusion 360 <span>Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">Revit <span>Intermediate</span></div><div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <h4>Engineering & PLM</h4>
+        <div class="skill-item"><div class="skill-name">Design Review & DFM <span>Expert</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">BOM & PLM Workflows <span>Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">Cost Estimating <span>Expert</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">Supplier Coordination <span>Expert</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <h4>Digital Fabrication & AI</h4>
+        <div class="skill-item"><div class="skill-name">3D Printing (FDM) <span>Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">Laser Engraving/Cutting <span>Advanced</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">G-code & NC Programming <span>Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+        <div class="skill-item"><div class="skill-name">AI Tools (Claude / GPT) <span>Proficient</span></div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-tag">Credentials</div>
+    <h2 class="section-title">Certifications & Licences</h2>
+    <p class="section-sub">Click any certificate to view full size.</p>
+    <div class="cert-grid">
+
+      <div class="cert-card peng-card">
+        <div class="cert-img-wrap" onclick="openLightbox('assets/cert_peng.png')">
+          <img src="assets/cert_peng.png" alt="P.Eng Licence"/>
+          <span class="zoom-hint">🔍 Click to enlarge</span>
+        </div>
+        <div class="cert-body">
+          <h4>Licensed Professional Engineer (P.Eng)</h4>
+          <p>Professional Engineers Ontario · Licence #100559685</p>
+          <span class="cert-badge badge-gold">⭐ Issued Oct 2025</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-img-wrap" onclick="openLightbox('assets/cert_sheet_metal.png')">
+          <img src="assets/cert_sheet_metal.png" alt="SolidWorks Sheet Metal"/>
+          <span class="zoom-hint">🔍 Click to enlarge</span>
+        </div>
+        <div class="cert-body">
+          <h4>SolidWorks Certified Advanced Professional</h4>
+          <p>Advanced Sheet Metal · Dassault Systèmes · Sep 2020</p>
+          <span class="cert-badge badge-green">✓ Certified</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-img-wrap" onclick="openLightbox('assets/cert_weldments.png')">
+          <img src="assets/cert_weldments.png" alt="SolidWorks Weldments"/>
+          <span class="zoom-hint">🔍 Click to enlarge</span>
+        </div>
+        <div class="cert-body">
+          <h4>SolidWorks Certified Advanced Professional</h4>
+          <p>Advanced Weldments · Dassault Systèmes · Oct 2020</p>
+          <span class="cert-badge badge-green">✓ Certified</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-img-wrap" onclick="openLightbox('assets/cert_drawing.png')">
+          <img src="assets/cert_drawing.png" alt="SolidWorks Drawing Tools"/>
+          <span class="zoom-hint">🔍 Click to enlarge</span>
+        </div>
+        <div class="cert-body">
+          <h4>SolidWorks Certified Professional</h4>
+          <p>Advanced Drawing Tools · Dassault Systèmes · Nov 2020</p>
+          <span class="cert-badge badge-green">✓ Certified</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-img-wrap" onclick="openLightbox('assets/cert_tssa.png')">
+          <img src="assets/cert_tssa.png" alt="TSSA Certificate"/>
+          <span class="zoom-hint">🔍 Click to enlarge</span>
+        </div>
+        <div class="cert-body">
+          <h4>TSSA Gas Technician 2 & Oil Burner Technician 2</h4>
+          <p>Technical Standards & Safety Authority Ontario · Cert #000282448</p>
+          <span class="cert-badge badge-green">✓ Licensed</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-img-wrap" onclick="openLightbox('assets/cert_cwb_mig.png')">
+          <img src="assets/cert_cwb_mig.png" alt="CWB MIG Weld"/>
+          <span class="zoom-hint">🔍 Click to enlarge</span>
+        </div>
+        <div class="cert-body">
+          <h4>CWB Welder Qualification — GMAW (MIG)</h4>
+          <p>Carbon Steel · Spray/Globular/Pulsed · CSA W47.1</p>
+          <span class="cert-badge badge-green">✓ Certified</span>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-img-wrap" onclick="openLightbox('assets/cert_cwb_stick.png')">
+          <img src="assets/cert_cwb_stick.png" alt="CWB Stick Weld"/>
+          <span class="zoom-hint">🔍 Click to enlarge</span>
+        </div>
+        <div class="cert-body">
+          <h4>CWB Welder Qualification — SMAW (Stick)</h4>
+          <p>Carbon Steel · Manual · Flat/Horizontal/Vertical · CSA W47.1</p>
+          <span class="cert-badge badge-green">✓ Certified</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-tag">Career History</div>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <h3>Product Design Engineer</h3>
+            <span class="timeline-period">2016 – Present</span>
+          </div>
+          <div class="timeline-company">Viscor Inc. / Contour Machine / Hosmetal Fab Ltd · Waterloo, ON</div>
+          <ul class="timeline-bullets">
+            <li>Design and develop complex sheet metal and mechanical components using SolidWorks and AutoCAD — detailed fabrication drawings validated by cross-functional teams before production release</li>
+            <li>Lead engineering design reviews coordinating sales, fabrication, and engineering teams to validate designs against specifications and customer requirements</li>
+            <li>Manage full BOM lifecycle, engineering changes, and drawing revision control through E2 Shop Tech ERP — applying PLM best practices throughout the design-to-delivery cycle</li>
+            <li>Manage supplier relationships with 10+ vendors — providing technical drawings, resolving design queries, ensuring specification compliance</li>
+            <li>Apply AI tools (Claude, ChatGPT) to accelerate documentation, design review write-ups, and technical specification drafting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header"><h3>Estimating / Project Engineer</h3><span class="timeline-period">2018 – 2019</span></div>
+          <div class="timeline-company">Viscor Inc. · Waterloo, ON</div>
+          <ul class="timeline-bullets">
+            <li>Developed production schedules and manufacturing programs by analysing facility capacity and supplier lead times</li>
+            <li>Conducted post-production cost studies comparing actual vs estimated fabrication costs — improving estimating accuracy</li>
+            <li>Managed material takeoffs, cycle time calculations, and supplier coordination</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header"><h3>MEP Coordinator / Estimator</h3><span class="timeline-period">2013 – 2016</span></div>
+          <div class="timeline-company">Hosmetal Fab Ltd · Waterloo, ON</div>
+          <ul class="timeline-bullets">
+            <li>Calculated HVAC loads and sized equipment per ASHRAE 62.1/90.1 using HAP software</li>
+            <li>Prepared estimates, takeoffs, and quotations for HVAC, fire protection, and ductwork projects using PlanSwift</li>
+            <li>Developed HVAC and lighting layouts in AutoCAD; coordinated supplier and subcontractor design reviews</li>
+            <li>Participated in value engineering and pre-tender negotiations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS / MAKER -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">Portfolio · Maker Projects</div>
+    <h2 class="section-title">3D Printing, Laser & CAD Work</h2>
+    <p class="section-sub">Hands-on projects combining SolidWorks design, FDM 3D printing, diode laser engraving, and desktop CNC fabrication. Click images to enlarge.</p>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <img src="assets/portfolio_fabrication.png" alt="Laser Enclosure Design" onclick="openLightbox('assets/portfolio_fabrication.png')"/>
+        <div class="project-body">
+          <h4>Custom Laser Enclosure — SolidWorks Design to Build</h4>
+          <p>Designed a full safety enclosure for a diode laser in SolidWorks 2020 — complete with ventilation ports, hinged lid, and acrylic window. Fabricated and assembled the finished unit.</p>
+          <div class="tag-list"><span class="tag">SolidWorks</span><span class="tag">Sheet Metal</span><span class="tag">Fabrication</span><span class="tag">Design-to-Build</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="assets/portfolio_3dparts.png" alt="3D Printed Parts" onclick="openLightbox('assets/portfolio_3dparts.png')"/>
+        <div class="project-body">
+          <h4>3D Printed Functional Parts & Prototypes</h4>
+          <p>Range of FDM printed parts including duct fittings, enclosure components, artistic models, and functional prototypes. Uses Cura slicer with optimised print profiles for quality and speed.</p>
+          <div class="tag-list"><span class="tag">FDM Printing</span><span class="tag">Cura Slicer</span><span class="tag">Anycubic</span><span class="tag">Creality</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="assets/portfolio_laser.png" alt="Laser Engraving" onclick="openLightbox('assets/portfolio_laser.png')"/>
+        <div class="project-body">
+          <h4>Laser Engraving — Wood, Tiles & Acrylic</h4>
+          <p>Laser engraving on wood, tiles, and coasters using xTool diode laser. Projects include custom sports team logos, personalised gifts, QR codes, and acrylic lens cuts for signage.</p>
+          <div class="tag-list"><span class="tag">xTool Laser</span><span class="tag">Lightburn</span><span class="tag">Wood</span><span class="tag">Acrylic</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="assets/portfolio_3dprinting.png" alt="3D Printing Workflow" onclick="openLightbox('assets/portfolio_3dprinting.png')"/>
+        <div class="project-body">
+          <h4>3D Printing Workflow & Setup</h4>
+          <p>Full 3D printing workflow — from SolidWorks/Fusion 360 3D model, through Cura slicer optimisation, to dual-head printing with water-soluble supports for complex geometries.</p>
+          <div class="tag-list"><span class="tag">Fusion 360</span><span class="tag">Dual-head</span><span class="tag">Water-soluble</span><span class="tag">G-code</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="assets/portfolio_intro.png" alt="Workshop Setup" onclick="openLightbox('assets/portfolio_intro.png')"/>
+        <div class="project-body">
+          <h4>Full Workshop Setup — 3D Print + Laser Lab</h4>
+          <p>Personal workshop with 3D printer, xTool diode laser engraver, and desktop CNC running simultaneously. All machines set up, configured, and maintained independently.</p>
+          <div class="tag-list"><span class="tag">3D Printing</span><span class="tag">Laser</span><span class="tag">CNC</span><span class="tag">Workshop</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="assets/portfolio_cover.png" alt="Portfolio Overview" onclick="openLightbox('assets/portfolio_cover.png')"/>
+        <div class="project-body">
+          <h4>3D Scan & CAD Reverse Engineering</h4>
+          <p>3D scanning and point cloud processing combined with 2D laser layout design. Demonstrates full digital-to-physical and physical-to-digital workflow capability.</p>
+          <div class="tag-list"><span class="tag">3D Scanning</span><span class="tag">Point Cloud</span><span class="tag">Laser Layout</span><span class="tag">CAD</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI SKILLS -->
+<section id="ai">
+  <div class="section-inner">
+    <div class="section-tag">Forward-Looking</div>
+    <h2 class="section-title">AI in My Engineering Workflow</h2>
+    <p class="section-sub">I actively use AI tools to make engineering work faster, smarter, and better documented.</p>
+    <div class="divider"></div>
+    <div class="ai-grid">
+      <div class="ai-card">
+        <h4>🤖 Claude AI & ChatGPT</h4>
+        <p>Use AI assistants daily to accelerate technical documentation, draft design review write-ups, generate specification templates, and prepare supplier communication packages — significantly cutting documentation time.</p>
+        <div style="margin-top:12px"><span class="ai-tag">Claude</span><span class="ai-tag">ChatGPT</span><span class="ai-tag">Technical Docs</span><span class="ai-tag">Spec Writing</span></div>
+      </div>
+      <div class="ai-card">
+        <h4>📋 AI-Assisted Design Review Prep</h4>
+        <p>Apply AI to structure and summarise design review findings, capture lessons learned, and generate standardised checklists — improving consistency across review cycles and reducing rework in production.</p>
+        <div style="margin-top:12px"><span class="ai-tag">Review Structuring</span><span class="ai-tag">Lessons Learned</span><span class="ai-tag">Checklists</span></div>
+      </div>
+      <div class="ai-card">
+        <h4>💼 Microsoft Copilot</h4>
+        <p>Use Copilot in Microsoft 365 to streamline project reports, summarise email threads, and generate first drafts of engineering proposals — improving cross-functional communication speed.</p>
+        <div style="margin-top:12px"><span class="ai-tag">MS Copilot</span><span class="ai-tag">Office 365</span><span class="ai-tag">Reporting</span></div>
+      </div>
+      <div class="ai-card">
+        <h4>🔍 AI-Powered CAD & Design Tools</h4>
+        <p>Actively exploring AI-driven design tools including SolidWorks AI features, generative design in Fusion 360, and platforms like CoLab that use AI to automate drawing checks and capture engineering knowledge at scale.</p>
+        <div style="margin-top:12px"><span class="ai-tag">Generative Design</span><span class="ai-tag">AI Drawing Review</span><span class="ai-tag">CoLab Platform</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div>
+        <h3 style="font-size:1.15rem;font-weight:700;color:var(--blue-dk);margin-bottom:20px;">Let's connect.</h3>
+        <div class="contact-item"><div class="contact-icon">📍</div><div><strong>Location</strong><span>Waterloo, ON N2K 3W5 · Open to Remote</span></div></div>
+        <div class="contact-item"><div class="contact-icon">📞</div><div><strong>Phone</strong><span>+1 (905) 922-7720</span></div></div>
+        <div class="contact-item"><div class="contact-icon">✉️</div><div><strong>Email</strong><span>madhukar.slakshman@gmail.com</span></div></div>
+        <div class="contact-item"><div class="contact-icon">🏛️</div><div><strong>Designation</strong><span>P.Eng — Professional Engineers Ontario #100559685</span></div></div>
+        <div class="contact-item"><div class="contact-icon">🇨🇦</div><div><strong>Work Status</strong><span>Canadian Permanent Resident · No sponsorship required</span></div></div>
+      </div>
+      <div class="contact-cta">
+        <h3>Open to new opportunities.</h3>
+        <p>I am actively exploring roles where I can apply my mechanical engineering expertise alongside modern AI-powered design tools. If you are building something at the intersection of engineering and software — I would love to talk.</p>
+        <a href="mailto:madhukar.slakshman@gmail.com" class="btn-blue">Send Me an Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Madhukar Shimoga Lakshman, P.Eng</span> · Mechanical Engineer · Waterloo, ON ·
+  <a href="mailto:madhukar.slakshman@gmail.com" style="color:rgba(255,255,255,0.7)">madhukar.slakshman@gmail.com</a>
+</footer>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
